@@ -1,41 +1,86 @@
 > _We're OGS, check out our work on [github.com/ogs-gmbh](https://github.com/ogs-gmbh)_
 
-# Project Template for React
+# axios-retry
 
-_A project template with a ready-to-use structure._
+_Resilient Axios requests with exponential backoff, flexible retry conditions, and lifecycle hooks — zero boilerplate._
 
 ![Preview](./docs/preview.avif)
 
-<a href="./LICENSE" target="_blank"><img alt="license badge" src="https://img.shields.io/github/license/OGS-GmbH/_react-template?color=0f434e&logo=hackthebox&logoColor=000000&labelColor=ffffff" /></a>
+<a href="./LICENSE" target="_blank"><img alt="license badge" src="https://img.shields.io/github/license/OGS-GmbH/axios-retry?color=0f434e&logo=hackthebox&logoColor=000000&labelColor=ffffff" /></a>
+<a href="https://github.com/OGS-GmbH/axios-retry/actions/workflows/main-trusted-deploy.yml" target="_blank"><img alt="workflow badge" src="https://img.shields.io/github/actions/workflow/status/OGS-GmbH/axios-retry/main-trusted-deploy.yml?color=0f434e&logo=rocket&logoColor=000000&labelColor=ffffff" /></a>
+<a href="https://www.npmjs.com/package/@ogs-gmbh/axios-retry" target="_blank"><img alt="npm badge" src="https://img.shields.io/npm/v/%40ogs-gmbh%2Faxios-retry?color=0f434e&logo=npm&logoColor=000000&labelColor=ffffff" /></a>
 
-- **Easy to Set Up**\
-  Simple configuration lets you start your projects quickly without complex setup.
+- **Drop-in Setup**\
+  One function call on any Axios instance — no wrappers, no class extensions, no config files.
+- **Linear & Exponential Backoff**\
+  Choose a fixed delay between retries or let the wait time grow automatically with each attempt.
+- **Flexible Retry Conditions**\
+  Pass a list of HTTP status codes or a custom function to decide exactly when a retry should happen.
+- **Full Lifecycle Hooks**\
+  React to every retry event — `onRetry`, `onMaxRetry`, `onRetryFailed`, and `onMaxRetryExceeded` — for logging, alerting, or custom logic.
 
-- **Preconfigured Tooling**\
-  Includes Oxlint, Oxfmt, Rolldown, TypeScript and more tooling out of the box.
+## Getting Started
 
-- **Modular Structure**\
-  Organized folder layout for scalable and maintainable projects.
+> [!IMPORTANT]
+> We're offering an extensive API-Reference covered with in-depth usage examples of this project.
 
-- **Development Friendly**\
-  Quick start with minimal setup required for new applications.
+To get a starting point, simply refer to our documentation at [ogs-gmbh.github.io/axios-retry](https://ogs-gmbh.github.io/axios-retry).
 
-## Tooling
+### Prerequisites
 
-| Tool                | Extras                       |
-| ------------------- | ---------------------------- |
-| ✅ `oxlint`         |                              |
-| ✅ `oxfmt`          |                              |
-| ✅ `Rolldown`       | with `tsdown`                |
-| ✅ `TypeScript`     |                              |
-| ✅ `VitePress`      |                              |
-| ✅ `TypeDoc`        |                              |
-| ✅ `GitHub Actions` |                              |
-| ✅ `release-please` |                              |
-| ✅ `commitlint`     |                              |
-| ✅ `lint-staged`    |                              |
-| ✅ `husky`          |                              |
-| ✅ `Vitest`         | Coverage and `React` support |
+- Node.js version 18 or higher
+- A package manager: e.g. npm, pnpm, ...
+
+### Installation
+
+Using npm:
+
+```sh
+$ npm install @ogs-gmbh/axios-retry
+```
+
+<details>
+  <summary>Using a different package manager?</summary>
+  <br/>
+
+Using yarn:
+
+```sh
+$ pnpm add @ogs-gmbh/axios-retry
+```
+
+Using pnpm:
+
+```sh
+$ pnpm add @ogs-gmbh/axios-retry
+```
+
+Using bun:
+
+```sh
+$ bun add @ogs-gmbh/axios-retry
+```
+
+</details>
+
+### Usage
+
+Now, you're able to import [`axiosRetry`](https://ogs-gmbh.github.io/axios-retry/reference/Other/axiosRetry). Take the following line as an example:
+
+```ts [example.ts]
+import { create } from "axios";
+import { axiosRetry } from "@ogs-gmbh/axios-retry";
+
+function makeACall() {
+  const instance = create({
+    baseURL: "https://ogs.de/example"
+  });
+
+  axiosRetry(instance);
+
+  return instance;
+}
+```
 
 ## License
 
