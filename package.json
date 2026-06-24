@@ -1,9 +1,16 @@
 {
-  "name": "@ogs-gmbh/_react-template",
+  "name": "@ogs-gmbh/axios-retry",
   "version": "1.0.0",
-  "description": "A react project template with a ready-to-use structure.",
+  "description": "Resilient Axios requests with exponential backoff, flexible retry conditions, and lifecycle hooks — zero boilerplate.",
   "keywords": [
-    "boilerplate"
+    "axios",
+    "backoff",
+    "exponential-backoff",
+    "http",
+    "interceptor",
+    "resilience",
+    "retry",
+    "typescript"
   ],
   "license": "MIT",
   "author": "OGS GmbH",
@@ -32,7 +39,7 @@
     "vitepress:preview": "vitepress preview .vitepress"
   },
   "dependencies": {
-    "react": "^19.2.4"
+    "axios": "^1.18.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^20.5.0",
