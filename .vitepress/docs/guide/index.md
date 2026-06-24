@@ -34,7 +34,7 @@ $ bun add @ogs-gmbh/axios-retry
 
 ### Usage
 
-Now, you're able to import [`axiosRetry`](/reference/Other/axiosRetry). Take the following line as an example:
+Now, you're able to import [`axiosRetry`](/reference/Core/axiosRetry). Take the following line as an example:
 
 ```ts [example.ts]
 import { create } from "axios";

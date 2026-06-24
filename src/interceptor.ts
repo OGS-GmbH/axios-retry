@@ -35,6 +35,7 @@ declare module "axios" {
  *
  * @since 1.0.0
  * @author Simon Kovtyk
+ * @category Core
  */
 function axiosRetry(axios: AxiosInstance, options?: Partial<AxiosRetryOptions>): void {
   const resolvedOptions = getOptions(options);
