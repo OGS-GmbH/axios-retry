@@ -41,15 +41,15 @@ function axiosRetry(axios: AxiosInstance, options?: Partial<AxiosRetryOptions>):
   const resolvedOptions = getOptions(options);
 
   /* oxlint-disable-next-line eslint-plugin-jsdoc(require-returns) */
-  function shouldRetry(code: number): boolean {
-    if (typeof resolvedOptions.when === "function") return resolvedOptions.when(code);
+  function shouldRetry(response: AxiosResponse): boolean {
+    if (typeof resolvedOptions.when === "function") return resolvedOptions.when(response);
 
-    return resolvedOptions.when.includes(code);
+    return resolvedOptions.when.includes(response.status);
   }
 
   axios.interceptors.response.use(
     function onFulfilled(response) {
-      if (!response.config || !shouldRetry(response.status)) return Promise.resolve(response);
+      if (!response.config || !shouldRetry(response)) return Promise.resolve(response);
 
       const attempt = response.config.__axiosRetryAttempts || 0;
 
@@ -82,7 +82,7 @@ function axiosRetry(axios: AxiosInstance, options?: Partial<AxiosRetryOptions>):
       });
     },
     function onRejected(error: AxiosError) {
-      if (!error.config || !error.response?.status || !shouldRetry(error.response.status))
+      if (!error.config || !error.response?.status || !shouldRetry(error.response))
         return Promise.reject(error);
 
       const attempt = error.config.__axiosRetryAttempts || 0;

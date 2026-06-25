@@ -1,4 +1,4 @@
-import type { AxiosRetryOptionsType, AxiosRetryWhenFn } from "./types.js";
+import type { AxiosRetryOptionsType } from "./types.js";
 
 /**
  * Default delay for linear retries
@@ -35,22 +35,18 @@ const AXIOS_RETRY_DEFAULT_TYPE: AxiosRetryOptionsType = "exponential";
 
 /**
  * Default `when` condition to determine if a retry should be made
- * @param code - HTTP status code
- * @returns If a retry should be made
- * @remarks Retries if HTTP status code isn't `408`, `429` or `>=500`
+ * @remarks Retries if HTTP status code is `408`, `429`, `502`, `503`, `504`
  *
  * @author Simon Kovtyk
  * @since 1.0.0
  * @category Defaults
  */
-const axiosRetryDefaultWhen: AxiosRetryWhenFn = function (code) {
-  return code !== 408 && code !== 429 && code < 500;
-};
+const AXIOS_RETRY_DEFAULT_WHEN: number[] = [408, 429, 502, 503, 504];
 
 export {
   AXIOS_RETRY_DEFAULT_LINEAR_DELAY,
   AXIOS_RETRY_DEFAULT_EXPONENTIAL_DELAY,
   AXIOS_RETRY_DEFAULT_COUNT,
   AXIOS_RETRY_DEFAULT_TYPE,
-  axiosRetryDefaultWhen
+  AXIOS_RETRY_DEFAULT_WHEN
 };

@@ -3,7 +3,7 @@ import {
   AXIOS_RETRY_DEFAULT_EXPONENTIAL_DELAY,
   AXIOS_RETRY_DEFAULT_LINEAR_DELAY,
   AXIOS_RETRY_DEFAULT_TYPE,
-  axiosRetryDefaultWhen
+  AXIOS_RETRY_DEFAULT_WHEN
 } from "./defaults.js";
 import type { AxiosRetryOptions } from "./types.js";
 
@@ -17,7 +17,7 @@ function getOptions(provided?: Partial<AxiosRetryOptions>): AxiosRetryOptions {
       (provided?.delay ?? type === "exponential")
         ? AXIOS_RETRY_DEFAULT_EXPONENTIAL_DELAY
         : AXIOS_RETRY_DEFAULT_LINEAR_DELAY,
-    when: provided?.when ?? axiosRetryDefaultWhen
+    when: provided?.when ?? AXIOS_RETRY_DEFAULT_WHEN
   };
 }
 

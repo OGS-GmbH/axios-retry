@@ -40,14 +40,14 @@ type AxiosRetryEvents = {
 
 /**
  * A simple function to determine based on a HTTP response code if a retry will be made.
- * @param code - Previous HTTP status code
+ * @param response - Previous HTTP response
  * @returns If a retry should be made
  *
  * @since 1.0.0
  * @author Simon Kovtyk
  * @category Types
  */
-type AxiosRetryWhenFn = (code: number) => boolean;
+type AxiosRetryWhenFn = (response: AxiosResponse) => boolean;
 
 /**
  * Available strategies for retrying
